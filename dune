@@ -1,0 +1,28 @@
+(library
+ (name bar)
+ (public_name bar)
+ (libraries ctypes)
+ (flags (:standard -w -9-27))
+ (ctypes
+  (external_library_name libfoo)
+  (build_flags_resolver (vendored (c_library_flags -lfoo)))
+  (headers (preamble "#include \"libfoo/foo.h\""))
+  (type_description
+   (instance Type)
+   (functor Type_description))
+  (function_description
+   (concurrency sequential)
+   (instance Functions)
+   (functor Function_description))
+  (generated_types Types_generated)
+  (generated_entry_point C)))
+
+(rule
+ (targets libfoo.a dllfoo.dll foo.h)
+ (deps (source_tree libfoo))
+ (action (no-infer (progn
+  (chdir libfoo (run make -s))
+  (copy libfoo/libfoo.a libfoo.a)
+  (copy libfoo/foo.h foo.h)
+  (copy libfoo/dllfoo.dll dllfoo.dll)
+  ))))

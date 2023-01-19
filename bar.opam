@@ -1,0 +1,15 @@
+opam-version: "2.0"
+version: "1.0.0"
+synopsis: "Ctypes test"
+maintainer: "Vesa Karvonen <vesa.a.j.k@gmail.com>"
+authors: "Vesa Karvonen"
+license: "0BSD"
+homepage: "https://github.com/polytypic/ctypes-test"
+bug-reports: "https://github.com/polytypic/ctypes-test/issues"
+dev-repo: "git+https://github.com/polytypic/ctypes-test.git"
+depends: [
+  "dune" {>= "3.3.0"}
+  "ctypes"
+  "ocaml" {>= "4.14.0"}
+]
+build: ["dune" "build" "-p" name "-j" jobs]
