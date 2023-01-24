@@ -1,3 +1,5 @@
+#define _FOO_C
+
 #include "foo.h"
 
 int foo_init(void) {

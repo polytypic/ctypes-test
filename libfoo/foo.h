@@ -1,7 +1,13 @@
 #define FOO_VERSION 1
 
-extern int foo_init(void);
+#ifdef _FOO_C
+#define EXTERN extern __declspec(dllexport)
+#else
+#define EXTERN extern __declspec(dllimport)
+#endif
 
-extern int foo_fnubar(char *);
+EXTERN int foo_init(void);
 
-extern void foo_exit(void);
+EXTERN int foo_fnubar(char *);
+
+EXTERN void foo_exit(void);
